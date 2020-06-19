@@ -9,6 +9,7 @@ defmodule UeberauthExample do
     import Supervisor.Spec, warn: false
 
     children = [
+      {Phoenix.PubSub, name: UeberauthExample.PubSub, adapter: Phoenix.PubSub.PG2},
       # Start the Ecto repository
       supervisor(UeberauthExample.Repo, []),
       # Start the endpoint when the application starts

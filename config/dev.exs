@@ -7,7 +7,6 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :ueberauth_example, UeberauthExampleWeb.Endpoint,
-  http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
   cache_static_lookup: false,
@@ -19,7 +18,21 @@ config :ueberauth_example, UeberauthExampleWeb.Endpoint,
       "--stdin",
       cd: Path.expand("../assets", __DIR__)
     ]
-  ]
+  ],
+  https: [
+    port: 443,
+    otp_app: :ueberauth_example,
+    keyfile: "priv/local_certs/server.key",
+    certfile: "priv/local_certs/server.crt"
+  ],
+  url: [
+    scheme: "https", 
+    host: "localhost",
+    port: 443
+  ]#,
+  # force_ssl: [
+  #   hsts: true#, host: "127.0.0.1:4001"
+  # ]
 
 # Watch static and templates for browser reloading.
 config :ueberauth_example, UeberauthExampleWeb.Endpoint,

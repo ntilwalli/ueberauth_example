@@ -11,7 +11,7 @@ config :ueberauth_example, UeberauthExampleWeb.Endpoint,
   root: Path.dirname(__DIR__),
   render_errors: [accepts: ~w(html json)],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
-  pubsub: [name: UeberauthExample.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: UeberauthExample.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -20,6 +20,8 @@ config :logger, :console,
 
 # Configure the Ecto Repos
 config :ueberauth_example, ecto_repos: [UeberauthExample.Repo]
+
+config :phoenix, :json_library, Poison 
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
@@ -47,9 +49,9 @@ config :ueberauth, Ueberauth,
   ]
 
 config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
-  client_id: System.get_env("FACEBOOK_APP_ID"),
-  client_secret: System.get_env("FACEBOOK_APP_SECRET"),
-  redirect_uri: System.get_env("FACEBOOK_REDIRECT_URI")
+  client_id: System.get_env("FACEBOOK_CLIENT_ID"),
+  client_secret: System.get_env("FACEBOOK_CLIENT_SECRET")#,
+  # redirect_uri: System.get_env("FACEBOOK_REDIRECT_URI")
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: System.get_env("GITHUB_CLIENT_ID"),
@@ -57,8 +59,8 @@ config :ueberauth, Ueberauth.Strategy.Github.OAuth,
 
 config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_id: System.get_env("GOOGLE_CLIENT_ID"),
-  client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
-  redirect_uri: System.get_env("GOOGLE_REDIRECT_URI")
+  client_secret: System.get_env("GOOGLE_CLIENT_SECRET")#,
+  # redirect_uri: System.get_env("GOOGLE_REDIRECT_URI")
 
 config :ueberauth, Ueberauth.Strategy.Slack.OAuth,
   client_id: System.get_env("SLACK_CLIENT_ID"),
