@@ -36,11 +36,11 @@ defmodule UeberauthExampleWeb.Endpoint do
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
-  plug(Plug.Session,
-    store: :cookie,
-    key: "_ueberauth_example_key",
-    signing_salt: "pJYawTy2"
-  )
+  # plug(Plug.Session,
+  #   store: :cookie,
+  #   key: "_ueberauth_example_key",
+  #   signing_salt: "pJYawTy2"
+  # )
 
   plug(UeberauthExampleWeb.Router)
 end
